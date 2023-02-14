@@ -6,7 +6,7 @@ export function NavBar() {
       <Link to="/" className={style.link}>
         Produtos
       </Link>
-      <Link to="/card" className={style.link}>
+      <Link to="/cart" className={style.link}>
         Carrinho
       </Link>
     </nav>
