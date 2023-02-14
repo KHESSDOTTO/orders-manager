@@ -5,7 +5,9 @@ import axios from "axios";
 
 // Aqui, estamos criando um objeto chamado apiURLs que contém duas propriedades: development e production. Cada propriedade contém uma URL base diferente para a API.
 const apiURLs = {
-  development: "http://localhost:1337/api",
+  // development: "http://localhost:1337/api", KHESS: estou trocando temporariamente para somente a URL de production para rodar
+  // na minha máquina local durante o desenvolvimento
+  development: "https://ordermanagerapi.onrender.com/api",
   production: "https://ordermanagerapi.onrender.com/api",
 };
 
