@@ -3,7 +3,7 @@ import { ListOfProducts } from "../../listOfProducts";
 
 export function Home() {
   return (
-    <div className={style.home}>
+    <div>
       <SearchBar />
       <ListOfProducts />
     </div>
