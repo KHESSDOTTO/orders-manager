@@ -1,12 +1,17 @@
-import { Routes, Route } from 'react-router-dom'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import { Home } from "./components/pages/home";
+import { NavBar } from "./components/navBar";
 
 function App() {
   return (
     <div className="App">
-      <Routes></Routes>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

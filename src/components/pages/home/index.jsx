@@ -1,9 +1,11 @@
+import { SearchBar } from "../../searchBar";
+import { ListOfProducts } from "../../listOfProducts";
+
 export function Home() {
   return (
-    <>
-      <NavBar />
+    <div className={style.home}>
       <SearchBar />
       <ListOfProducts />
-    </>
+    </div>
   );
 }

@@ -1,3 +1,3 @@
-export function ListOfProducts() {
+export function SearchBar() {
   return <div></div>;
 }
