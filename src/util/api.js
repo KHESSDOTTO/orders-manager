@@ -7,8 +7,8 @@ import axios from "axios";
 const apiURLs = {
   // development: "http://localhost:1337/api", KHESS: estou trocando temporariamente para somente a URL de production para rodar
   // na minha máquina local durante o desenvolvimento
-  development: "https://ordermanagerapi.onrender.com/api",
-  production: "https://ordermanagerapi.onrender.com/api",
+  development: "https://ordermanagerdb.onrender.com/api",
+  production: "https://ordermanagerdb.onrender.com/api",
 };
 
 // Aqui, estamos criando uma instância do Axios com a URL base especificada para o ambiente atual, que é determinado pela variável de ambiente process.env.NODE_ENV.
