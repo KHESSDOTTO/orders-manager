@@ -36,9 +36,9 @@ export function ListOfProducts(props) {
                 src={currProduct.attributes.imageURL}
                 style={{ width: "15em" }}
               />
-              <h2>{currProduct.attributes.name}</h2>
+              <h3>{currProduct.attributes.name}</h3>
               <p>{`Preço: R$ ${currProduct.attributes.price}`}</p>
-              <Link to="/">
+              <Link to={`/productDetails/${currProduct.id}`}>
                 <button>Acessar</button>
               </Link>
             </article>
