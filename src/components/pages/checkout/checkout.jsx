@@ -22,7 +22,7 @@ function Checkout() {
   return (
     <ListGroup>
       {cartItems.map((item) => {
-        <ListGroup.item>Teste</ListGroup.item>;
+        return <ListGroup.item>Teste</ListGroup.item>;
       })}
 
       {/* //   <ListGroup.Item>No style</ListGroup.Item>

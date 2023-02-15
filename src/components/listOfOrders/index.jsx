@@ -25,7 +25,7 @@ export function ListOfOrders(props) {
   return (
     <section>
       {orderList
-        .filter((cO) => cO.attributes.ID.includes(props.textFilter))
+        .filter((cO) => cO.attributes.orderID.includes(props.textFilter))
         .map((currOrder) => {
           return (
             <article>

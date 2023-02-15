@@ -34,18 +34,25 @@ export function ProductDetails(props) {
   }, []);
 
   function handleChange(event) {
-    setFormVal({ ...formVal, [event.target.name]: event.target.value });
+    setFormVal({
+      name: prodSel.name,
+      price: prodSel.price,
+      imageURL: prodSel.imageURL,
+      UUID: prodSel.UUID,
+      [event.target.name]: event.target.value,
+    });
   }
 
-  async function handleSubmit(e) {
-    // try {
-    //   e.preventDefault();
-    //   const infosForAPI = { data: { ...dish } };
-    //   await api.post("/dishes", infosForAPI);
-    //   navigate("/");
-    // } catch (err) {
-    //   console.log(err);
-    // }
+  async function handleSubmit(event) {
+    try {
+      event.preventDefault();
+      props.order.push(formVal);
+      console.log(formVal);
+      console.log(props.order);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -72,17 +79,18 @@ export function ProductDetails(props) {
             </Accordion.Item>
           </Accordion>
           <br></br>
-          <form onSubmit={handleSubmit}>
+          <form>
             <input
               name="qnty"
               type="number"
               value={formVal.qnty}
               onChange={handleChange}
             />
-
             <br></br>
             <br></br>
-            <Button variant="primary">Adicionar ao carrinho</Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Adicionar ao carrinho
+            </Button>
           </form>
         </Card.Body>
       </Card>
