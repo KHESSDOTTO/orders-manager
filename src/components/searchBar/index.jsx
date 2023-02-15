@@ -15,7 +15,7 @@ export function SearchBar(props) {
           <input
             className="form-control me-2"
             type="search"
-            placeholder="Search Product"
+            placeholder={props.placeHolder}
             aria-label="Search"
             value={searchContent}
             onChange={handleChange}

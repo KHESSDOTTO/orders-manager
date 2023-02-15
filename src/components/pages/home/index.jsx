@@ -13,7 +13,7 @@ export function Home() {
   return (
     <div className={style.home}>
       <div className={style.searchBar}>
-        <SearchBar filterProducts={search} />
+        <SearchBar filterProducts={search} placeHolder="Search Products" />
       </div>
       <ListOfProducts textFilter={searchText} />
     </div>

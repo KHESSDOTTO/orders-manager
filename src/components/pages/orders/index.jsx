@@ -11,7 +11,7 @@ export function Orders() {
 
   return (
     <div>
-      <SearchBar filterProducts={search} />
+      <SearchBar filterProducts={search} placeHolder={"Search Orders"} />
       <ListOfOrders textFilter={searchText} />
     </div>
   );
