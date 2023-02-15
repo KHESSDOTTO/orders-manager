@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../../util/api";
-
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 export function ProductDetails(props) {
   const params = useParams();
   const navigate = useNavigate();
@@ -39,18 +40,23 @@ export function ProductDetails(props) {
 
   return (
     <>
-      <h2>{prodSel.name}</h2>
-      <p>{prodSel.description}</p>
-      <img src={prodSel.imageURL} alt={`Product ${prodSel.name}`} />
-      <form onSubmit={handleSubmit}>
-        <input
-          name="qnty"
-          type="number"
-          value={formVal.qnty}
-          onChange={handleChange}
-        />
-        <button>Adicionar ao carrinho</button>
-      </form>
+      <Card style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={prodSel.imageURL} />
+        <Card.Body>
+          <Card.Title>{prodSel.name}</Card.Title>
+          <Card.Text>{prodSel.description}</Card.Text>
+          <form onSubmit={handleSubmit}>
+            <input
+              name="qnty"
+              type="number"
+              value={formVal.qnty}
+              onChange={handleChange}
+            />
+
+            <Button variant="primary">Adicionar ao carrinho</Button>
+          </form>
+        </Card.Body>
+      </Card>
     </>
   );
 }

@@ -1,0 +1,6 @@
+#nav > div {
+  border: 1px solid #d9dadc;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #e9e9e999;
+}
