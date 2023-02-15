@@ -11,13 +11,13 @@ export function ProductDetails(props) {
   const params = useParams();
   const navigate = useNavigate();
   const [prodSel, setProdSel] = useState([]);
-  const [formVal, setFormVal] = useState({
-    name: "",
-    price: 0,
-    imageURL: "",
-    UUID: "",
-    qnty: 0,
-  });
+  // const [formVal, setFormVal] = useState({
+  //   name: "",
+  //   price: 0,
+  //   imageURL: "",
+  //   UUID: "",
+  //   qnty: 0,
+  // });
 
   useEffect(() => {
     async function fetchProduct() {
@@ -37,8 +37,18 @@ export function ProductDetails(props) {
     setFormVal({ ...formVal, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    try {
+      e.preventDefault();
+
+      const infosForAPI = { data: { ...dish } };
+
+      await api.post("/dishes", infosForAPI);
+
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
