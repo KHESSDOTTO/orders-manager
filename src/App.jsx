@@ -6,10 +6,9 @@ import { NavBar } from "./components/navBar";
 import Checkout from "./components/pages/checkout/checkout";
 import { ProductDetails } from "./components/pages/productDetails";
 import { Orders } from "./components/pages/orders";
-import { useState } from "react";
 
 function App() {
-  const order = [];
+  let order = [];
 
   return (
     <div className="App">
