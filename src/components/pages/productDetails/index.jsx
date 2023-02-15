@@ -11,13 +11,13 @@ export function ProductDetails(props) {
   const params = useParams();
   const navigate = useNavigate();
   const [prodSel, setProdSel] = useState([]);
-  // const [formVal, setFormVal] = useState({
-  //   name: "",
-  //   price: 0,
-  //   imageURL: "",
-  //   UUID: "",
-  //   qnty: 0,
-  // });
+  const [formVal, setFormVal] = useState({
+    name: "",
+    price: 0,
+    imageURL: "",
+    UUID: "",
+    qnty: 0,
+  });
 
   useEffect(() => {
     async function fetchProduct() {
@@ -34,17 +34,21 @@ export function ProductDetails(props) {
   }, []);
 
   function handleChange(event) {
-    setFormVal({ ...formVal, [event.target.name]: event.target.value });
+    setFormVal({
+      name: prodSel.name,
+      price: prodSel.price,
+      imageURL: prodSel.imageURL,
+      UUID: prodSel.UUID,
+      [event.target.name]: event.target.value,
+    });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(event) {
     try {
-      e.preventDefault();
-
-      const infosForAPI = { data: { ...dish } };
-
-      await api.post("/dishes", infosForAPI);
-
+      event.preventDefault();
+      props.order.push(formVal);
+      console.log(formVal);
+      console.log(props.order);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -75,17 +79,18 @@ export function ProductDetails(props) {
             </Accordion.Item>
           </Accordion>
           <br></br>
-          <form onSubmit={handleSubmit}>
+          <form>
             <input
               name="qnty"
               type="number"
               value={formVal.qnty}
               onChange={handleChange}
             />
-
             <br></br>
             <br></br>
-            <Button variant="primary">Adicionar ao carrinho</Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Adicionar ao carrinho
+            </Button>
           </form>
         </Card.Body>
       </Card>
