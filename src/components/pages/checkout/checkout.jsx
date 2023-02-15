@@ -21,7 +21,9 @@ function Checkout() {
 
   return (
     <ListGroup>
-      {cartItems.map((item) => {})}
+      {cartItems.map((item) => {
+        <ListGroup.item>Teste</ListGroup.item>;
+      })}
 
       {/* //   <ListGroup.Item>No style</ListGroup.Item>
     //   <ListGroup.Item variant="primary">Primary</ListGroup.Item>
