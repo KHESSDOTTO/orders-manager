@@ -10,7 +10,7 @@ export function ListOfOrders(props) {
       try {
         const response = await api.get("/orders");
         console.log(response);
-        setProdList(response.data.data);
+        setOrderList(response.data.data);
       } catch (err) {
         console.log(err);
       }
