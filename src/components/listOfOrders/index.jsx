@@ -24,17 +24,22 @@ export function ListOfOrders(props) {
   // os nomes correspondentes.
   return (
     <section>
-      {orderList
-        .filter((cO) => cO.attributes.orderID.includes(props.textFilter))
-        .map((currOrder) => {
-          return (
-            <article>
-              <h3>{`Pedido: ${currOrder.attributes.products}`}</h3>
-              <p>{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</p>
-              <button onClick={handleDelete}>Cancelar</button>
-            </article>
-          );
-        })}
+      {orderList.map((currOrder) => {
+        return (
+          <article>
+            <h3>{`Pedido: ${JSON.stringify(currOrder.attributes.products).slice(
+              2,
+              JSON.stringify(currOrder.attributes.products).length - 2
+            )}`}</h3>
+            <p>{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</p>
+            <button onClick={handleDelete}>Cancelar</button>
+          </article>
+        );
+      })}
+
+      {/* PARA FILTRAR ----->  .filter((currOrder) =>
+          currOrder.attributes.orderID.includes(props.textFilter)
+        ) */}
     </section>
   );
 }

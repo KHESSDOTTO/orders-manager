@@ -1,7 +1,8 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../../util/api";
-import { Button } from "bootstrap";
+import { v4 as uuid } from "uuid";
 
 function Checkout(props) {
   // const [cartItems, setItems] = useState([]);
@@ -24,8 +25,18 @@ function Checkout(props) {
   //   setItems(props.order);
   // }, []);
   const [cart, setCart] = useState(props.order);
+  const [shippingAddress, setShippingAddress] = useState("");
+  const navigate = useNavigate();
 
   console.log(cart);
+
+  let totalPrice = cart.reduce((acc, cE) => {
+    return acc + cE.price * cE.qnty;
+  }, 0);
+
+  function handleChange(event) {
+    setShippingAddress(event.target.value);
+  }
 
   function handleDelete(event, UUID, index) {
     props.order.splice(index, 1);
@@ -34,12 +45,40 @@ function Checkout(props) {
     console.log(cart);
   }
 
-  let totalPrice = cart.reduce((acc, cE) => {
-    return acc + cE.price * cE.qnty;
-  }, 0);
+  async function handleSubmitOrder() {
+    try {
+      const UUID = uuid();
+      const orderData = {
+        data: {
+          products: cart,
+          shippingAddress: shippingAddress,
+          totalPrice: totalPrice,
+          orderID: UUID,
+        },
+      };
+      await api.post("/orders", orderData);
+      console.log(orderData);
+      navigate("/orders");
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <>
+      <section>
+        <h4>Subtotal: {`R$ ${totalPrice}`}</h4>
+        <label htmlFor="shippingAddress">Shipping Address: </label>
+        <input
+          type="text"
+          name="shippingAddress"
+          id="shippingAddress"
+          value={shippingAddress}
+          onChange={handleChange}
+        />
+        <button onClick={handleSubmitOrder}>Confirm Order</button>
+      </section>
+
       {cart.map((item, index) => {
         return (
           <article style={{ border: "1px solid black" }}>
@@ -56,10 +95,6 @@ function Checkout(props) {
           </article>
         );
       })}
-
-      <section>
-        <h3>Subtotal: {`R$ ${totalPrice}`}</h3>
-      </section>
 
       {/* //   <ListGroup.Item>No style</ListGroup.Item>
     //   <ListGroup.Item variant="primary">Primary</ListGroup.Item>
