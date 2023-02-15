@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-.logo {
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -16,17 +16,19 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
-}
+} */
 
 .App {
   margin: 0;
-  display: flex;
+  /* display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
-  height: 100vh;
+  justify-content: flex-start; */
+  height: 100%;
+  width: 100vw;
+  padding: 0;
 }
 
-@keyframes logo-spin {
+/* @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -47,4 +49,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
