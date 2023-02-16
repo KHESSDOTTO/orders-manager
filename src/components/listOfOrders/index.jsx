@@ -19,8 +19,19 @@ export function ListOfOrders(props) {
     fetchOrders();
   }, []);
 
-  function handleDelete(event) {
-    console.log(event.target.parentNode);
+  function handleDelete(event, orderId) {
+    event.preventDefault();
+    api
+      .delete(`/orders/${orderId}`)
+      .then(() => {
+        const updatedOrderList = orderList.filter(
+          (order) => order.id !== orderId
+        );
+        setOrderList(updatedOrderList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const listToShow = orderList.filter((currOrder) => {
@@ -39,19 +50,17 @@ export function ListOfOrders(props) {
     <section>
       {listToShow.map((currOrder) => {
         return (
-          <article>
+          <article key={currOrder.id}>
             <h3>{`Pedido: ${currOrder.attributes.products.map((product) => {
               return product.name;
             })}`}</h3>
             <p>{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</p>
-            <button onClick={handleDelete}>Cancelar</button>
+            <button onClick={(e) => handleDelete(e, currOrder.id)}>
+              Cancelar
+            </button>
           </article>
         );
       })}
-
-      {/* PARA FILTRAR ----->  .filter((currOrder) =>
-          currOrder.attributes.orderID.includes(props.textFilter)
-        ) */}
     </section>
   );
 }
