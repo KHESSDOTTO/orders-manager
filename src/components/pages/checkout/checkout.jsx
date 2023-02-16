@@ -63,6 +63,19 @@ function Checkout(props) {
       console.log(err);
     }
   }
+  function handleIncrement(index) {
+    const updatedCart = [...cart];
+    updatedCart[index].qnty += 1;
+    setCart(updatedCart);
+  }
+
+  function handleDecrement(index) {
+    const updatedCart = [...cart];
+    if (updatedCart[index].qnty > 1) {
+      updatedCart[index].qnty -= 1;
+      setCart(updatedCart);
+    }
+  }
 
   return (
     <>
@@ -78,13 +91,16 @@ function Checkout(props) {
         />
         <button onClick={handleSubmitOrder}>Confirm Order</button>
       </section>
-
       {cart.map((item, index) => {
         return (
           <article style={{ border: "1px solid black" }}>
             <p>{item.name}</p>
             <p>{`Price R$ ${item.price}`}</p>
-            <p>{`Quantity: ${item.qnty}`}</p>
+            <div>
+              <button onClick={() => handleDecrement(index)}>-</button>
+              <p>{`Quantity: ${item.qnty}`}</p>
+              <button onClick={() => handleIncrement(index)}>+</button>
+            </div>
             <img src={item.imageURL} alt="" style={{ width: "10em" }} />
             <button
               variant="secondary"
@@ -95,16 +111,6 @@ function Checkout(props) {
           </article>
         );
       })}
-
-      {/* //   <ListGroup.Item>No style</ListGroup.Item>
-    //   <ListGroup.Item variant="primary">Primary</ListGroup.Item>
-    //   <ListGroup.Item variant="secondary">Secondary</ListGroup.Item>
-    //   <ListGroup.Item variant="success">Success</ListGroup.Item>
-    //   <ListGroup.Item variant="danger">Danger</ListGroup.Item>
-    //   <ListGroup.Item variant="warning">Warning</ListGroup.Item>
-    //   <ListGroup.Item variant="info">Info</ListGroup.Item>
-    //   <ListGroup.Item variant="light">Light</ListGroup.Item>
-    //   <ListGroup.Item variant="dark">Dark</ListGroup.Item> */}
     </>
   );
 }
