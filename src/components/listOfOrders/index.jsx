@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Card, Button } from "react-bootstrap";
 import { api } from "../../util/api";
 
 export function ListOfOrders(props) {
@@ -50,22 +51,30 @@ export function ListOfOrders(props) {
     <section>
       {listToShow.map((currOrder) => {
         return (
-          <article key={currOrder.id} className="container-fluid">
-            <div className="row">
-              <p className="col-7">{`Pedido: ${currOrder.attributes.products.map(
-                (product) => {
+          <Card key={currOrder.id}>
+            <Card.Header as="p">
+              <small>{`ID: ${currOrder.attributes.orderID}`}</small>
+            </Card.Header>
+            <Card.Body>
+              <Card.Title as="h6">
+                <i>{`Pedido: ${currOrder.attributes.products.map((product) => {
                   return product.name;
-                }
-              )}`}</p>
-              <h5 className="col">{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</h5>
-            </div>
-            <button
-              onClick={(e) => handleDelete(e, currOrder.id)}
-              className="col"
-            >
-              Cancelar
-            </button>
-          </article>
+                })}`}</i>
+              </Card.Title>
+              <Card.Text as="h5" style={{ textDecoration: "underline" }}>
+                {`Preço total: R$ ${currOrder.attributes.totalPrice}`}
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Button
+                variant="outline-danger"
+                onClick={(e) => handleDelete(e, currOrder.id)}
+                className="col"
+              >
+                Cancelar
+              </Button>
+            </Card.Footer>
+          </Card>
         );
       })}
     </section>
