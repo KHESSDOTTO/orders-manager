@@ -65,7 +65,7 @@ function Checkout(props) {
   }
   function handleIncrement(index) {
     const updatedCart = [...cart];
-    updatedCart[index].qnty += 1;
+    updatedCart[index].qnty++;
     setCart(updatedCart);
   }
 
