@@ -95,10 +95,10 @@ function Checkout(props) {
         return (
           <article style={{ border: "1px solid black" }}>
             <p>{item.name}</p>
-            <p>{`Price R$ ${item.price}`}</p>
+            <p>{`Preço: R$ ${item.price}`}</p>
             <div>
               <button onClick={() => handleDecrement(index)}>-</button>
-              <p>{`Quantity: ${item.qnty}`}</p>
+              <p>{`Quantidade: ${item.qnty}`}</p>
               <button onClick={() => handleIncrement(index)}>+</button>
             </div>
             <img src={item.imageURL} alt="" style={{ width: "10em" }} />
