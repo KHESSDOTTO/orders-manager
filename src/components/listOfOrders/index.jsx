@@ -3,6 +3,7 @@ import { api } from "../../util/api";
 
 export function ListOfOrders(props) {
   const [orderList, setOrderList] = useState([]);
+  console.log(orderList);
 
   // Pesquisa toda a lista de produtos da api - collection "products" e salva a resposta em "response".
   useEffect(() => {
@@ -19,6 +20,12 @@ export function ListOfOrders(props) {
   }, []);
 
   function handleDelete(event) {}
+
+  //   console.log(
+  //     orderList.filter((currOrder) =>
+  //       currOrder.attributes.orderID.includes(props.textFilter)
+  //     )
+  //   );
 
   // Utiliza o texto passado como props ao componente (proveniente da searchBar) para filtrar a array de produtos e mostrar apenas os produtos com
   // os nomes correspondentes.

@@ -5,25 +5,6 @@ import { api } from "../../../util/api";
 import { v4 as uuid } from "uuid";
 
 function Checkout(props) {
-  // const [cartItems, setItems] = useState([]);
-
-  // useEffect(() => {
-  //   async function fetchOrder() {
-  //     try {
-  //       const response = await api.get(
-  //         "https://ordermanagerdb.onrender.com/api/Orders"
-  //       );
-  //       setItems(response.data.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  //   fetchOrder();
-  // }, []);
-
-  // useEffect(() => {
-  //   setItems(props.order);
-  // }, []);
   const [cart, setCart] = useState(props.order);
   const [shippingAddress, setShippingAddress] = useState("");
   const navigate = useNavigate();
@@ -47,17 +28,19 @@ function Checkout(props) {
 
   async function handleSubmitOrder() {
     try {
-      const UUID = uuid();
+      const orderUUID = uuid();
       const orderData = {
         data: {
           products: cart,
           shippingAddress: shippingAddress,
           totalPrice: totalPrice,
-          orderID: UUID,
+          orderID: orderUUID,
         },
       };
       await api.post("/orders", orderData);
       console.log(orderData);
+      props.order.splice(0, props.order.length);
+      setCart([]);
       navigate("/orders");
     } catch (err) {
       console.log(err);
