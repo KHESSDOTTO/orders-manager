@@ -50,12 +50,19 @@ export function ListOfOrders(props) {
     <section>
       {listToShow.map((currOrder) => {
         return (
-          <article key={currOrder.id}>
-            <h3>{`Pedido: ${currOrder.attributes.products.map((product) => {
-              return product.name;
-            })}`}</h3>
-            <p>{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</p>
-            <button onClick={(e) => handleDelete(e, currOrder.id)}>
+          <article key={currOrder.id} className="container-fluid">
+            <div className="row">
+              <p className="col-7">{`Pedido: ${currOrder.attributes.products.map(
+                (product) => {
+                  return product.name;
+                }
+              )}`}</p>
+              <h5 className="col">{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</h5>
+            </div>
+            <button
+              onClick={(e) => handleDelete(e, currOrder.id)}
+              className="col"
+            >
               Cancelar
             </button>
           </article>
