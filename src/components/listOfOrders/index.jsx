@@ -18,7 +18,9 @@ export function ListOfOrders(props) {
     fetchOrders();
   }, []);
 
-  function handleDelete(event) {}
+  function handleDelete(event) {
+    console.log(event.target.parentNode);
+  }
 
   // Utiliza o texto passado como props ao componente (proveniente da searchBar) para filtrar a array de produtos e mostrar apenas os produtos com
   // os nomes correspondentes.
@@ -27,10 +29,9 @@ export function ListOfOrders(props) {
       {orderList.map((currOrder) => {
         return (
           <article>
-            <h3>{`Pedido: ${JSON.stringify(currOrder.attributes.products).slice(
-              2,
-              JSON.stringify(currOrder.attributes.products).length - 2
-            )}`}</h3>
+            <h3>{`Pedido: ${currOrder.attributes.products.map((product) => {
+              return product.name;
+            })}`}</h3>
             <p>{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</p>
             <button onClick={handleDelete}>Cancelar</button>
           </article>
