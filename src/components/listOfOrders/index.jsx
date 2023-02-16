@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Card, Button } from "react-bootstrap";
 import { api } from "../../util/api";
 
 export function ListOfOrders(props) {
@@ -50,15 +51,30 @@ export function ListOfOrders(props) {
     <section>
       {listToShow.map((currOrder) => {
         return (
-          <article key={currOrder.id}>
-            <h3>{`Pedido: ${currOrder.attributes.products.map((product) => {
-              return product.name;
-            })}`}</h3>
-            <p>{`Preço total: R$ ${currOrder.attributes.totalPrice}`}</p>
-            <button onClick={(e) => handleDelete(e, currOrder.id)}>
-              Cancelar
-            </button>
-          </article>
+          <Card key={currOrder.id}>
+            <Card.Header as="p">
+              <small>{`ID: ${currOrder.attributes.orderID}`}</small>
+            </Card.Header>
+            <Card.Body>
+              <Card.Title as="h6">
+                <i>{`Pedido: ${currOrder.attributes.products.map((product) => {
+                  return product.name;
+                })}`}</i>
+              </Card.Title>
+              <Card.Text as="h5" style={{ textDecoration: "underline" }}>
+                {`Preço total: R$ ${currOrder.attributes.totalPrice}`}
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <Button
+                variant="outline-danger"
+                onClick={(e) => handleDelete(e, currOrder.id)}
+                className="col"
+              >
+                Cancelar
+              </Button>
+            </Card.Footer>
+          </Card>
         );
       })}
     </section>
