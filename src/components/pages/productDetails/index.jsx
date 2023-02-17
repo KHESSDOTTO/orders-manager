@@ -1,21 +1,22 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { api } from "../../../util/api";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Accordion from "react-bootstrap/Accordion";
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { api } from '../../../util/api';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Accordion from 'react-bootstrap/Accordion';
+import toast, { Toaster } from 'react-hot-toast';
 
-import style from "../productDetails/style.module.css";
+import '../productDetails/details.css';
 
 export function ProductDetails(props) {
   const params = useParams();
   const navigate = useNavigate();
   const [prodSel, setProdSel] = useState([]);
   const [formVal, setFormVal] = useState({
-    name: "",
+    name: '',
     price: 0,
-    imageURL: "",
-    UUID: "",
+    imageURL: '',
+    UUID: '',
     qnty: 0,
   });
 
@@ -49,28 +50,20 @@ export function ProductDetails(props) {
       props.order.push(formVal);
       console.log(formVal);
       console.log(props.order);
-      navigate("/");
+
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
   }
 
   return (
-    <div className={style.cardContainer}>
-      <Card className={style.card} style={{ width: "18rem" }}>
-        <Card.Img
-          variant="top"
-          src={prodSel.imageURL}
-          style={{
-            width: "8rem",
-            height: "8rem",
-            marginLeft: "5rem",
-            marginTop: "1rem",
-          }}
-        />
-        <Card.Body>
+    <div>
+      <Card className="Card">
+        <Card.Img className="img" variant="top" src={prodSel.imageURL} />
+        <Card.Body className="body">
           <Card.Title>{prodSel.name}</Card.Title>
-          <Accordion defaultActiveKey={["0"]} alwaysOpen>
+          <Accordion defaultActiveKey={['0']} alwaysOpen>
             <Accordion.Item eventKey="0">
               <Accordion.Header>Ver detalhes</Accordion.Header>
               <Accordion.Body>
@@ -88,7 +81,7 @@ export function ProductDetails(props) {
             />
             <br></br>
             <br></br>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button className="button" variant="primary" onClick={handleSubmit}>
               Adicionar ao carrinho
             </Button>
           </form>
