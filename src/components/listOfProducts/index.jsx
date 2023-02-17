@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { api } from '../../util/api';
-import style from '../listOfProducts/style.module.css';
-import Card from 'react-bootstrap/Card';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { api } from "../../util/api";
+import style from "../listOfProducts/style.module.css";
+import Card from "react-bootstrap/Card";
 
 export function ListOfProducts(props) {
   const [prodList, setProdList] = useState([]);
@@ -11,7 +11,7 @@ export function ListOfProducts(props) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await api.get('/products');
+        const response = await api.get("/products");
         console.log(response);
         setProdList(response.data.data);
       } catch (err) {
@@ -29,43 +29,42 @@ export function ListOfProducts(props) {
         .filter((cP) =>
           cP.attributes.name
             .toLowerCase()
-            .includes(props.textFilter.toLowerCase()),
+            .includes(props.textFilter.toLowerCase())
         )
         .map((currProduct) => {
           return (
             <div className={style.article}>
               <Card
                 style={{
-                  width: '18rem',
-                  height: '30rem',
-                  textAlign: 'center',
-                  display: 'flex',
-                  margin: '2rem 2rem 2rem 2rem',
-                  justifyContent: 'flex-start',
+                  width: "18rem",
+                  height: "30rem",
+                  textAlign: "center",
+                  display: "flex",
+                  margin: "2rem 2rem 2rem 2rem",
+                  justifyContent: "flex-start",
                   boxShadow:
-                    'rgba(50, 50, 92, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
+                    "rgba(50, 50, 92, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
                 }}
               >
+                <Card.Header
+                  style={{
+                    width: "100%",
+                    height: "20vh",
+                    display: "flex",
+                    alignItems: "center",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  {currProduct.attributes.name}
+                </Card.Header>
                 <Card.Body>
-                  <Card.Header
-                    style={{
-                      width: '100%',
-                      height: '14vh',
-                      display: 'flex',
-                      alignItems: 'center',
-                      fontWeight: 'bolder',
-                    }}
-                  >
-                    {currProduct.attributes.name}
-                  </Card.Header>
-
                   <Card.Img
                     src={currProduct.attributes.imageURL}
                     className={style.centeredimg}
                     style={{
-                      width: '8rem',
-                      height: '8rem',
-                      marginTop: '0.2rem',
+                      width: "8rem",
+                      height: "8rem",
+                      marginTop: "0.2rem",
                     }}
                   />
                 </Card.Body>
