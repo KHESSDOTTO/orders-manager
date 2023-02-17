@@ -1,18 +1,24 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { api } from "../../util/api";
-import style from "../listOfProducts/style.module.css";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { api } from '../../util/api';
+import style from '../listOfProducts/style.module.css';
+import Card from 'react-bootstrap/Card';
+import toast, { Toaster } from 'react-hot-toast';
 
 export function ListOfProducts(props) {
   const [prodList, setProdList] = useState([]);
+  const loading = () => {
+    const loadingToast = toast.loading('Carregando...');
+    setTimeout(() => {
+      toast.dismiss(loadingToast);
+    }, 2000);
+  };
 
   // Pesquisa toda a lista de produtos da api - collection "products" e salva a resposta em "response".
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await api.get("/products");
+        const response = await api.get('/products');
         console.log(response);
         setProdList(response.data.data);
       } catch (err) {
@@ -30,39 +36,55 @@ export function ListOfProducts(props) {
         .filter((cP) =>
           cP.attributes.name
             .toLowerCase()
-            .includes(props.textFilter.toLowerCase())
+            .includes(props.textFilter.toLowerCase()),
         )
         .map((currProduct) => {
           return (
             <div className={style.article}>
               <Card
                 style={{
-                  width: "18rem",
-                  height: "25rem",
-                  textAlign: "center",
-                  display: "flex",
-                  justifyContent: "flex-start",
+                  width: '18rem',
+                  height: '30rem',
+                  textAlign: 'center',
+                  display: 'flex',
+                  margin: '2rem 2rem 2rem 2rem',
+                  justifyContent: 'flex-start',
+                  boxShadow:
+                    'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
                 }}
               >
-                <Card.Img
-                  variant="top"
-                  src={currProduct.attributes.imageURL}
-                  style={{
-                    width: "8rem",
-                    height: "8rem",
-                    marginLeft: "5rem",
-                    marginTop: "1rem",
-                  }}
-                />
                 <Card.Body>
-                  <Card.Title>{currProduct.attributes.name}</Card.Title>
-                  <Card.Text>
-                    {`Preço: R$ ${currProduct.attributes.price}`}
-                  </Card.Text>
-                  <Link to={`/productDetails/${currProduct.id}`}>
-                    <Button variant="primary">Acessar</Button>
-                  </Link>
+                  <Card.Header
+                    style={{
+                      width: '100%',
+                      height: '14vh',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontWeight: 'bolder',
+                    }}
+                  >
+                    {currProduct.attributes.name}
+                  </Card.Header>
+
+                  <Card.Img
+                    src={currProduct.attributes.imageURL}
+                    className={style.centeredimg}
+                    style={{
+                      width: '8rem',
+                      height: '8rem',
+                      marginTop: '0.2rem',
+                    }}
+                  />
                 </Card.Body>
+                <Card.Footer className={style.footer}>
+                  {`Preço: R$ ${currProduct.attributes.price}`}
+                  <Link
+                    onClick={loading}
+                    to={`/productDetails/${currProduct.id}`}
+                  >
+                    <button className={style.button}>Detalhes</button>
+                  </Link>
+                </Card.Footer>
               </Card>
             </div>
           );

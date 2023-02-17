@@ -1,5 +1,10 @@
 .searchBar {
   display: flex;
   justify-content: center;
-  background-color: #f8f9fa;
+  margin-top: 1rem;
+
+}
+.home{
+  
+  width: 100%;
 }
