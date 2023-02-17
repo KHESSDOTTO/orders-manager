@@ -4,7 +4,6 @@ import { api } from '../../../util/api';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
-import toast, { Toaster } from 'react-hot-toast';
 
 import '../productDetails/details.css';
 
@@ -56,7 +55,6 @@ export function ProductDetails(props) {
       console.log(err);
     }
   }
-  const [activeKey, setActiveKey] = useState(null);
 
   return (
     <div>
@@ -87,7 +85,6 @@ export function ProductDetails(props) {
           <Card.Title>{prodSel.name}</Card.Title>
           <Accordion
             activeKey={activeKey}
-            onSelect={(key) => setActiveKey(key)}
             style={{ width: '20rem' }}
             defaultActiveKey={['0']}
             alwaysOpen

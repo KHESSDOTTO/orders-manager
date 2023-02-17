@@ -3,16 +3,9 @@ import { Link } from 'react-router-dom';
 import { api } from '../../util/api';
 import style from '../listOfProducts/style.module.css';
 import Card from 'react-bootstrap/Card';
-import toast, { Toaster } from 'react-hot-toast';
 
 export function ListOfProducts(props) {
   const [prodList, setProdList] = useState([]);
-  const loading = () => {
-    const loadingToast = toast.loading('Carregando...');
-    setTimeout(() => {
-      toast.dismiss(loadingToast);
-    }, 2000);
-  };
 
   // Pesquisa toda a lista de produtos da api - collection "products" e salva a resposta em "response".
   useEffect(() => {
@@ -78,10 +71,7 @@ export function ListOfProducts(props) {
                 </Card.Body>
                 <Card.Footer className={style.footer}>
                   {`Preço: R$ ${currProduct.attributes.price}`}
-                  <Link
-                    onClick={loading}
-                    to={`/productDetails/${currProduct.id}`}
-                  >
+                  <Link to={`/productDetails/${currProduct.id}`}>
                     <button className={style.button}>Detalhes</button>
                   </Link>
                 </Card.Footer>

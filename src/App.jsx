@@ -6,16 +6,12 @@ import { NavBar } from './components/navBar';
 import Checkout from './components/pages/checkout/checkout';
 import { ProductDetails } from './components/pages/productDetails';
 import { Orders } from './components/pages/orders';
-import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   let order = [];
 
   return (
     <div className="App">
-      <div>
-        <Toaster />
-      </div>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
