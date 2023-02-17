@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { api } from '../../../util/api';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Accordion from 'react-bootstrap/Accordion';
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { api } from "../../../util/api";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Accordion from "react-bootstrap/Accordion";
 
-import '../productDetails/details.css';
+import "../productDetails/details.css";
 
 export function ProductDetails(props) {
   const params = useParams();
   const navigate = useNavigate();
   const [prodSel, setProdSel] = useState([]);
   const [formVal, setFormVal] = useState({
-    name: '',
+    name: "",
     price: 0,
-    imageURL: '',
-    UUID: '',
+    imageURL: "",
+    UUID: "",
     qnty: 0,
   });
 
@@ -50,7 +50,7 @@ export function ProductDetails(props) {
       console.log(formVal);
       console.log(props.order);
 
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -60,42 +60,43 @@ export function ProductDetails(props) {
     <div>
       <Card
         style={{
-          width: '90%',
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          margin: '5rem 0rem 0rem 5rem',
-          paddingRight: '15rem',
-          paddingLeft: '15rem',
+          width: "90%",
+          display: "flex",
+          flexDirection: "row-reverse",
+          margin: "5rem 0rem 0rem 5rem",
+          paddingRight: "15rem",
+          paddingLeft: "15rem",
         }}
       >
         <Card.Img
-          style={{ maxWidth: '30rem', height: '40rem', marginRight: '4rem' }}
+          style={{ maxWidth: "30rem", height: "40rem", marginRight: "4rem" }}
           className="imgDetails"
           variant="top"
           src={prodSel.imageURL}
         />
         <Card.Body
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-evenly",
           }}
           className="body"
         >
           <Card.Title>{prodSel.name}</Card.Title>
           <Accordion
-            activeKey={activeKey}
-            style={{ width: '20rem' }}
-            defaultActiveKey={['0']}
-            alwaysOpen
+            style={{ width: "20rem", marginLeft: "12rem" }}
+            defaultActiveKey={null}
           >
-            <Accordion.Item eventKey="0">
+            <Accordion.Item>
               <Accordion.Header>Ver detalhes</Accordion.Header>
-              <Accordion.Body>
-                <Card.Text>{prodSel.description}</Card.Text>
+              <Accordion.Body style={{ maxHeight: "200px", overflow: "auto" }}>
+                <Card.Text style={{ textOverflow: "ellipsis" }}>
+                  {prodSel.description}
+                </Card.Text>
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
+
           <br></br>
           <form>
             <input
