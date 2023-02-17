@@ -1,11 +1,11 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import { Home } from "./components/pages/home";
-import { NavBar } from "./components/navBar";
-import Checkout from "./components/pages/checkout/checkout";
-import { ProductDetails } from "./components/pages/productDetails";
-import { Orders } from "./components/pages/orders";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import { Home } from './components/pages/home';
+import { NavBar } from './components/navBar';
+import Checkout from './components/pages/checkout/checkout';
+import { ProductDetails } from './components/pages/productDetails';
+import { Orders } from './components/pages/orders';
 
 function App() {
   let order = [];
