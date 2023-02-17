@@ -56,14 +56,42 @@ export function ProductDetails(props) {
       console.log(err);
     }
   }
+  const [activeKey, setActiveKey] = useState(null);
 
   return (
     <div>
-      <Card className="Card">
-        <Card.Img className="img" variant="top" src={prodSel.imageURL} />
-        <Card.Body className="body">
+      <Card
+        style={{
+          width: '90%',
+          display: 'flex',
+          flexDirection: 'row-reverse',
+          margin: '5rem 0rem 0rem 5rem',
+          paddingRight: '15rem',
+          paddingLeft: '15rem',
+        }}
+      >
+        <Card.Img
+          style={{ maxWidth: '30rem', height: '40rem', marginRight: '4rem' }}
+          className="imgDetails"
+          variant="top"
+          src={prodSel.imageURL}
+        />
+        <Card.Body
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+          }}
+          className="body"
+        >
           <Card.Title>{prodSel.name}</Card.Title>
-          <Accordion defaultActiveKey={['0']} alwaysOpen>
+          <Accordion
+            activeKey={activeKey}
+            onSelect={(key) => setActiveKey(key)}
+            style={{ width: '20rem' }}
+            defaultActiveKey={['0']}
+            alwaysOpen
+          >
             <Accordion.Item eventKey="0">
               <Accordion.Header>Ver detalhes</Accordion.Header>
               <Accordion.Body>

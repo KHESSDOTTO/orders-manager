@@ -77,8 +77,28 @@ function Checkout(props) {
       </section>
       {cart.map((item, index) => {
         return (
-          <article>
-            <img src={item.imageURL} alt="" />
+          <article
+            style={{
+              display: 'flex',
+              width: '100%',
+              marginTop: '2rem',
+              height: '45vh',
+              flexDirection: 'column',
+              justifyContent: 'space-around',
+              boxShadow:
+                'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+            }}
+          >
+            <img
+              src={item.imageURL}
+              alt=""
+              style={{
+                height: '10vh',
+                width: '6vw',
+                marginLeft: '46%',
+                marginTop: '1rem',
+              }}
+            />
             <div className="orderDetails">
               <p>{item.name}</p>
               <p>{`Preço: R$ ${item.price}`}</p>
